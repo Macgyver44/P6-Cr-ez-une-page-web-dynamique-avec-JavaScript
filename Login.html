@@ -11,8 +11,10 @@
         rel="stylesheet">
     <meta name="description" content="">
     <link rel="stylesheet" href="FrontEnd/assets/style.css">
-    <script src="FrontEnd/assets/config.js"></script>
-    <script src="FrontEnd/assets/script.js" defer></script>
+
+    <script src="FrontEnd/process_login.js"></script>
+
+
 </head>
 
 <body>
@@ -32,14 +34,16 @@
 
         <section id="contact">
             <h2>Log in</h2>
-            <form action="FrontEnd/process_login.js" method="POST">
+            <form method="post" id="login-form">
                 <label for="username">E-mail :</label>
                 <input type="text" id="username" name="username" required>
 
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" required>
 
-                <input type="submit" value="Se connecter">
+                <input type="submit" id="login-button" value="Se connecter">
+                <p id="success-message"></p>
+                <p id="error-message"></p>
                 <p id="forgot-password"><a href="forgot_password.html">Mot de passe oublié ?</a></div>
                 </p>
             </form>

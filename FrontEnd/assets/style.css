@@ -336,6 +336,57 @@ input[type="submit"]:hover {
 }
 
 /***style log in****/
+
+#success-message {
+
+	color: rgb(17, 124, 11);
+	margin-top: 10px;
+	font-size: 25px;
+	text-align: center;
+	animation-direction: alternate;
+}
+
+@keyframes shake-animation {
+	0% {
+		transform: translateX(0);
+	}
+
+	10%,
+	90% {
+		transform: translateX(-10px);
+	}
+
+	20%,
+	80% {
+		transform: translateX(10px);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translateX(-10px);
+	}
+
+	40%,
+	60% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+
+#error-message {
+	color: red;
+	margin-top: 10px;
+	font-size: 25px;
+	text-align: center;
+	animation: shake-animation 0.5s ease;
+}
+
+
 .login {
 	font-weight: bold;
 	/* Mettre le texte en gras */
