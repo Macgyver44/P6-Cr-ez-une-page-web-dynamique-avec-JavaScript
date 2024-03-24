@@ -262,6 +262,7 @@ li:hover {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+	cursor: pointer;
 }
 
 .gallery img:hover {
@@ -324,6 +325,57 @@ input[type="submit"] {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	transform: scale(1.1);
+	/* Mise à l'échelle de 120% lors du survol */
+	transition: transform 0.3s ease;
+	/* Animation fluide */
+}
+
+/***style log in****/
+.login {
+	font-weight: bold;
+	/* Mettre le texte en gras */
+	font-size: 1.2em;
+	cursor: pointer;
+
+}
+
+/* Réinitialiser les styles par défaut des liens */
+a {
+	text-decoration: none;
+	/* Supprimer la soulignement par défaut */
+	color: inherit;
+	/* Utiliser la couleur par défaut du texte */
+	cursor: pointer;
+
+}
+
+/* Style pour l'effet de survol */
+li:hover {
+	transform: scale(1.2);
+	/* Mise à l'échelle de 120% lors du survol */
+	transition: transform 0.3s ease;
+	/* Animation fluide */
+}
+
+/* Style pour les liens au clic */
+a:active,
+a:focus {
+	color: #1D6154;
+	/* Couleur du lien au clic ou focus */
+}
+
+
+
+#forgot-password {
+	margin-top: 10px;
+	font-size: 14px;
+	text-align: center;
+	/* Centrage horizontal du texte */
 }
 
 footer nav ul {
