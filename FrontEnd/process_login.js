@@ -51,3 +51,45 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
+
+//LogIn LogOut
+document.addEventListener("DOMContentLoaded", function () {
+    var loginButton = document.getElementById("login-logout");
+    console.log("Bonton recuperer dans le DOM:", loginButton);
+
+
+
+    // Vérifier si le token est présent dans le stockage local
+    var token = localStorage.getItem("token");
+    console.log("Le code JavaScript s'exécute correctement.");
+
+    if (token) {
+        // Si le token est présent, l'utilisateur est connecté
+        console.log("Token trouvé :", token);
+        console.log("L'utilisateur est connecté.");
+        loginButton.textContent = "Logout";
+        var style = document.createElement("style");
+        style.textContent = "body { color: red !important; }"; // Appliquer la couleur rouge à tout le contenu de la page
+        document.head.appendChild(style);
+
+    } else {
+        // Si le token n'est pas présent, l'utilisateur n'est pas connecté
+        console.log("L'utilisateur n'est pas connecté.");
+        loginButton.textContent = "Login";
+    }
+
+    loginButton.addEventListener("click", function () {
+        // Mettre en œuvre la déconnexion si l'utilisateur est connecté
+        if (token) {
+            // Effacer le token du stockage local
+            localStorage.removeItem("token");
+            console.log("L'utilisateur s'est déconnecté.");
+            // Mettre à jour le texte du bouton
+            loginButton.textContent = "Login";
+        } else {
+            // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+            console.log("Redirection vers la page de connexion.");
+            window.location.href = "Login.html";
+        }
+    });
+});
