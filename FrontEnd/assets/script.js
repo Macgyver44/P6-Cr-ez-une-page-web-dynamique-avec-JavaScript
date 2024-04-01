@@ -110,3 +110,76 @@ function renderProjects(filter = 'Tous') {
 
     console.log("Projets affichés dans le HTML :", filteredWorks);
 }
+
+// Récupérer le modal
+var modal = document.getElementById("myModal");
+
+// Fonction pour ouvrir le modal et afficher les projets sous forme de vignettes
+function openModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    
+    // Sélectionner la modal et son contenu
+    var modalContent = document.querySelector(".modal-content");
+
+
+        // Effacer le contenu précédent de la modal
+        modalContent.innerHTML = '';
+ 
+   // Pour chaque projet, créer une vignette et l'ajouter à la modal
+works.forEach(project => {
+    const projectThumbnail = document.createElement('div');
+    projectThumbnail.classList.add('project-thumbnail');
+    
+    // Créer l'image
+    const image = document.createElement('img');
+    image.src = project.imageUrl ?? "(Pas d'image)";
+    image.alt = project.title ?? "(pas de alt)";
+    
+    // Créer le bouton de suppression en forme de poubelle
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    
+    deleteButton.addEventListener('click', () => {
+        deleteProject(project.id);
+    });
+
+    // Ajouter l'image et le bouton à la vignette
+    projectThumbnail.appendChild(image);
+    projectThumbnail.appendChild(deleteButton);
+
+    // Ajouter la vignette à la modal
+    modalContent.appendChild(projectThumbnail);
+});
+
+
+    console.log("Projets affichés dans la modal");
+}
+// Récupérer le bouton de fermeture du modal
+var closeBtn = document.getElementsByClassName("close")[0];
+
+
+// Fonction pour supprimer un projet
+function deleteProject(projectId) {
+    // Mettez ici votre logique pour supprimer le projet avec l'ID spécifié
+    console.log("Suppression du projet avec l'ID :", projectId);
+}
+
+
+// Fonction pour fermer le modal
+function closeModal() {
+    modal.style.display = "none";
+
+}
+
+// Écouter le clic sur le bouton de fermeture du modal
+closeBtn.addEventListener("click", closeModal);
+
+// Écouter le clic en dehors du modal pour le fermer
+window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+});
+

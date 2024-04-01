@@ -395,6 +395,126 @@ input[type="submit"]:hover {
 
 }
 
+#portfolio .modify-link {
+	float: right;
+	/* Aligner l'élément "modifier" à droite */
+	margin-left: 10px;
+	/* Ajouter un espacement entre le titre et l'élément "modifier" */
+}
+
+
+.modal {
+	display: none;
+	/* Par défaut, le modal est caché */
+	position: fixed;
+	/* Position fixée pour rester au-dessus du contenu */
+	z-index: 1000;
+	/* Z-index élevé pour être au-dessus de tout le reste */
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	/* Fond semi-transparent pour assombrir le fond */
+}
+
+.modal-content {
+	display: flex;
+	/* Afficher les vignettes en ligne */
+	flex-wrap: wrap;
+	/* Passer à la ligne suivante si nécessaire */
+	background-color: white;
+	margin: 10% auto;
+	/* Centrer le modal verticalement */
+	padding: 20px;
+	border-radius: 10px;
+	width: 30%;
+
+
+}
+
+.project-thumbnail {
+	width: 100px;
+	/* Largeur de la vignette */
+	height: 100px;
+	/* Hauteur de la vignette */
+	margin: 5px;
+	/* Réduire la marge autour de chaque vignette */
+	padding: 5px;
+	/* Ajouter un espacement interne pour un meilleur aspect */
+	box-sizing: border-box;
+	/* Inclure la marge et le padding dans la largeur et la hauteur de la vignette */
+	position: relative;
+	display: inline-block;
+}
+
+
+.project-thumbnail img {
+	width: 100%;
+	/* Ajuster la taille de l'image à la taille de la vignette */
+	height: 100%;
+	/* Ajuster la taille de l'image à la taille de la vignette */
+	object-fit: cover;
+	/* Assurez-vous que l'image couvre entièrement la vignette */
+}
+
+.delete-button img {
+	width: 17px;
+	/* Définir la largeur souhaitée */
+	height: 17px;
+	/* Définir la hauteur souhaitée */
+}
+
+.delete-button {
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	width: 20px;
+	/* Largeur de la poubelle */
+	height: 20px;
+	/* Hauteur de la poubelle */
+	background-image: url("../assets/icons/icons8-poubelle-color/icons8-poubelle-17.svg");
+
+
+	/* Utiliser la poubelle comme arrière-plan */
+	background-size: cover;
+	/* Ajuster la taille de l'image */
+	background-repeat: no-repeat;
+	/* Ne pas répéter l'image */
+	background-position: center;
+	/* Centrer l'image */
+	border: none;
+	/* Supprimer le bord */
+	cursor: pointer;
+	/* Ajouter un curseur au survol */
+}
+
+
+.close {
+
+	position: relative;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	cursor: pointer;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+
+
+
+
 /* Réinitialiser les styles par défaut des liens */
 a {
 	text-decoration: none;
