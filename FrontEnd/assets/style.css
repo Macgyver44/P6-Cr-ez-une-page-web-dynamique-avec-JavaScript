@@ -406,6 +406,10 @@ input[type="submit"]:hover {
 .modal {
 	display: none;
 	/* Par défaut, le modal est caché */
+
+	justify-content: center;
+	align-items: center;
+	/* Centrer la modal horizontalement et verticalement */
 	position: fixed;
 	/* Position fixée pour rester au-dessus du contenu */
 	z-index: 1000;
@@ -418,25 +422,56 @@ input[type="submit"]:hover {
 	/* Fond semi-transparent pour assombrir le fond */
 }
 
-.modal-content {
+#myModalSecondary {
+	display: none;
+	/* La modal secondaire est initialement cachée */
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-wrapper {
+	position: relative;
 	display: flex;
 	/* Afficher les vignettes en ligne */
+	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 	/* Passer à la ligne suivante si nécessaire */
 	background-color: white;
 	margin: 10% auto;
 	/* Centrer le modal verticalement */
-	padding: 20px;
+	padding: 3%;
 	border-radius: 10px;
 	width: 30%;
 
 
 }
 
+.outside-buttons {
+	margin-top: 5%;
+
+	width: 99%;
+	border-top: 1px solid #ccc;
+	/* Ajout de la bordure supérieure grise */
+}
+
+/* Style pour centrer le titre */
+.modal-wrapper h2 {
+	text-align: center;
+	color: black;
+}
+
+
 .project-thumbnail {
-	width: 100px;
+	width: 76px;
 	/* Largeur de la vignette */
-	height: 100px;
+	height: 102px;
 	/* Hauteur de la vignette */
 	margin: 5px;
 	/* Réduire la marge autour de chaque vignette */
@@ -490,15 +525,14 @@ input[type="submit"]:hover {
 }
 
 
+/* Style pour la croix de fermeture */
 .close {
-
-	position: relative;
-	top: 0;
-	left: 0;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 	padding: 10px;
 	cursor: pointer;
 	color: #aaa;
-	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
@@ -508,6 +542,36 @@ input[type="submit"]:hover {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+/* Style pour le bouton "Ajouter une photo" */
+#addPhotoButton {
+	display: block;
+	margin: 0 auto;
+	/* Centrer horizontalement */
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	transition: background-color 0.3s;
+	/* Animation au survol */
+	margin: 2em auto;
+	padding: 10px 20px;
+	/* Espacement interne */
+	border: none;
+	/* Supprimer la bordure */
+	width: 237px;
+	height: 36px;
+	text-align: center;
+	border-radius: 60px;
+	cursor: pointer;
+}
+
+#addPhotoButton:hover {
+	transform: scale(1.1);
+	/* Mise à l'échelle de 120% lors du survol */
+	transition: transform 0.3s ease;
+	/* Animation fluide */
 }
 
 

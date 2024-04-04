@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const portfolioSection = document.getElementById("portfolio");
 		// Créer le contenu HTML de l'élément "modifier" et du titre
 		const modifyHTML = `<span class="modify-link">
-            <a href="#" onclick="openModal()"><i class="fas fa-pencil-alt"></i>Modifier</a>
+            <a href="#" onclick="openModal()">✏️Modifier</a>
         </span>`;
 
 		// Insérer le contenu HTML juste avant la fin de l'élément parent
