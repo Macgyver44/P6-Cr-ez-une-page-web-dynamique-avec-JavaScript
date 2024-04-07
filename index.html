@@ -77,19 +77,50 @@
 				<div class="modal-wrapper">
 					<!-- Bouton de fermeture -->
 					<span class="close">&times;</span>
+					<a href="#" class="back-arrow">&lt;</a> <!-- Flèche de retour -->
 					<!-- Titre de la modal -->
 					<h2>Ajout Photo</h2>
 					<!-- Contenu de la galerie -->
 					<div class="modal-content">
-						<!-- Contenu de la galerie ici -->
+						<!-- Formulaire pour envoyer une photo -->
+						<form id="photoForm" class="form">
+
+							<div class="illustration">
+								<img src="FrontEnd/assets/icons/Vector.svg" alt="Illustration">
+							</div>
+							<div class="file-upload">
+								<label for="photo" class="file-label">
+									+ Ajouter photo
+								</label>
+								<input type="file" name="photo" id="photo" accept="image/*">
+							</div>
+							<p class="upload-info">jpg, png : 4mo max</p>
+						</form>
+
+
+
+						<!-- Formulaire pour choisir un titre -->
+						<form id="titleForm" class="form">
+							<h3>Titre</h3>
+							<input type="text" name="title" id="title">
+						</form>
+						<!-- Formulaire pour choisir une catégorie -->
+						<form id="categoryForm" class="form">
+							<h3>Catégorie</h3>
+							<select name="category" id="category">
+								<!-- Options de catégories dynamiquement générées -->
+							</select>
+						</form>
 					</div>
 					<!-- Boutons en dehors de la modal -->
 					<div class="outside-buttons">
 						<!-- Bouton pour ajouter une photo -->
-						<button id="">Ajouter une photo</button>
+						<button id="sendButton">Valider</button>
 					</div>
 				</div>
 			</div>
+
+
 
 
 

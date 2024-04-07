@@ -113,7 +113,7 @@ function renderProjects(filter = 'Tous') {
 
 //Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
 //Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
-//Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
+
 
 // Fonction pour ouvrir le modal et afficher les projets sous forme de vignettes
 function openModal() {
@@ -204,11 +204,11 @@ function deleteProject(projectId) {
 var modal = document.getElementById("myModal");
 var modalSecondary = document.getElementById("myModalSecondary");
 
-// Récupérer le bouton de fermeture du modal
+// Récupérer le bouton de fermeture des modales
 var closeBtn = modal.querySelector(".close");
 var closeBtnSecondary = modalSecondary.querySelector(".close");
 
-// Écouter le clic sur le bouton de fermeture du modal
+// Écouter le clic sur le bouton de fermeture des modales
 closeBtn.addEventListener("click", closeModal);
 closeBtnSecondary.addEventListener("click", closeModal);
 
@@ -237,6 +237,21 @@ addPhotoButtonPrimary.addEventListener("click", function () {
     // Afficher la modal secondaire
     modalSecondary.style.display = "block";
 });
+
+// Récupérer la flèche de retour pour aficher la modal primaire ensuite.
+const backArrow = document.querySelector('.back-arrow');
+
+// Ajouter un événement de clic à la flèche de retour
+backArrow.addEventListener('click', () => {
+    // Afficher la modal primaire
+    modal.style.display = "block";
+    // Cacher la modal secondaire
+    modalSecondary.style.display = "none";
+});
+
+//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
+//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
+//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
 
 
 

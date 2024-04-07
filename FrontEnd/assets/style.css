@@ -404,6 +404,7 @@ input[type="submit"]:hover {
 
 
 .modal {
+
 	display: none;
 	/* Par défaut, le modal est caché */
 
@@ -421,6 +422,142 @@ input[type="submit"]:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 	/* Fond semi-transparent pour assombrir le fond */
 }
+
+/***********************************Modal secondaire***************************************/
+.modalSecondary .modal-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* Style pour la flèche de retour */
+.modalSecondary .back-arrow {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 24px;
+	/* Taille de la police de la flèche */
+	cursor: pointer;
+	font-weight: bold;
+	/* Épaissir la flèche */
+	text-decoration: none;
+	/* Supprimer le soulignement */
+}
+
+/* Style pour positionner la flèche de retour */
+.modalSecondary .modal-wrapper {
+	position: relative;
+}
+
+
+/**************************** Style des formulaires ***************************************/
+.modal-content {
+	width: 100%;
+
+}
+
+/* Styliser le titre du formulaire */
+.modalSecondary h2 {
+	margin-bottom: 20px;
+}
+
+/* Styliser le formulaire */
+.modalSecondary form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+/* Styliser le formulaire */
+#myModalSecondary #photoForm {
+	text-align: center;
+	background-color: #E8F1F6;
+	;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+/* Styliser l'illustration */
+#myModalSecondary #photoForm .file-upload img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+/* Styliser le texte d'information */
+#myModalSecondary #photoForm .upload-info {
+	color: #333;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+#myModalSecondary #photoForm .file-upload input[type="file"] {
+	position: absolute;
+	left: -9999px;
+}
+
+#myModalSecondary #photoForm .file-label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 20px;
+	background-color: #CBD6DC;
+	;
+	color: #306685;
+	border-radius: 60px;
+	width: 173px;
+
+	transition: background-color 0.3s ease;
+}
+
+#myModalSecondary #photoForm .file-label:hover {
+	background-color: #ccc;
+}
+
+#myModalSecondary #photoForm .file-label img {
+	display: block;
+	margin: 0 auto;
+}
+
+/* Styliser les champs de saisie */
+.modalSecondary #photoForm input {
+
+	text-align: center;
+	height: 169px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modalSecondary #titleForm input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modalSecondary #categoryForm #category {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+
+
+/* Styliser les libellés */
+.modalSecondary label {
+	margin: 1em 0 1em 0;
+}
+
+
+h3 {
+	margin-bottom: 10px;
+}
+
+
 
 #myModalSecondary {
 	display: none;
@@ -448,6 +585,8 @@ input[type="submit"]:hover {
 	/* Centrer le modal verticalement */
 	padding: 3%;
 	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	/* Ombre légère */
 	width: 30%;
 
 
@@ -574,10 +713,35 @@ input[type="submit"]:hover {
 	/* Animation fluide */
 }
 
+/* Style pour le bouton "Envoyer" */
+#sendButton {
+	display: block;
+	margin: 0 auto;
+	/* Centrer horizontalement */
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	transition: background-color 0.3s;
+	/* Animation au survol */
+	margin: 2em auto;
+	padding: 10px 20px;
+	/* Espacement interne */
+	border: none;
+	/* Supprimer la bordure */
+	width: 237px;
+	height: 36px;
+	text-align: center;
+	border-radius: 60px;
+	cursor: pointer;
+}
 
-
-
-
+#sendButton:hover {
+	transform: scale(1.1);
+	/* Mise à l'échelle de 120% lors du survol */
+	transition: transform 0.3s ease;
+	/* Animation fluide */
+}
 
 /* Réinitialiser les styles par défaut des liens */
 a {
@@ -603,8 +767,6 @@ a:focus {
 	color: #1D6154;
 	/* Couleur du lien au clic ou focus */
 }
-
-
 
 #forgot-password {
 	margin-top: 10px;
