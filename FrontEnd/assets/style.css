@@ -84,12 +84,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -104,679 +104,690 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+  content: "";
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin: auto;
-	font-family: 'Work Sans';
-	font-size: 14px;
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+}
+.edit-mode-bar {
+  position: fixed; /* Fixe la barre en haut de la page */
+  top: 0; /* Place la barre en haut de la page */
+  left: 0; /* Aligne la barre sur la gauche de la page */
+  width: 100%; /* La barre prend toute la largeur de la page */
+
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 1000; /* Assurez-vous que la barre s'affiche au-dessus des autres éléments */
 }
 
 header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
 }
 
 section {
-	margin: 50px 0
+  margin: 50px 0;
 }
 
 h1 {
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
 }
 
-h1>span {
-	font-family: 'Work Sans';
-	font-size: 10px;
-	letter-spacing: 0.1em;
-	;
+h1 > span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
 h2 {
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
 }
 
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-
+  display: flex;
+  align-items: center;
+  list-style-type: none;
 }
 
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+  padding: 0 10px;
+  font-size: 1.2em;
 }
 
 li:hover {
-	color: #B1663C;
+  color: #b1663c;
 }
 
 #introduction {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #introduction figure {
-	flex: 1
+  flex: 1;
 }
 
 #introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+  display: block;
+  margin: auto;
+  width: 80%;
 }
 
 #introduction article {
-	flex: 1
+  flex: 1;
 }
 
 #introduction h2 {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 /****Zone filters*****/
 
 .filters {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 51px;
-	gap: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 51px;
+  gap: 10px;
 }
 
 .btn-filter {
-	border: 1px solid #1D6154;
-	color: #1D6154;
-	text-align: center;
-	font-size: 16px;
-	font-family: Syne;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-	background-color: white;
-	padding: 9px 15px;
-	cursor: pointer;
-	border-radius: 60px;
-
+  border: 1px solid #1d6154;
+  color: #1d6154;
+  text-align: center;
+  font-size: 16px;
+  font-family: Syne;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background-color: white;
+  padding: 9px 15px;
+  cursor: pointer;
+  border-radius: 60px;
 }
 
 .btn-filter:hover {
-	background-color: #1D6154;
-	color: white;
-	transition: ease-in-out;
-	transition-duration: 200ms;
-	scale: 1.1;
+  background-color: #1d6154;
+  color: white;
+  transition: ease-in-out;
+  transition-duration: 200ms;
+  scale: 1.1;
 }
 
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-	cursor: pointer;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  cursor: pointer;
 }
 
 .gallery img:hover {
+  color: white;
+  transition: ease-in-out;
+  transition-duration: 300ms;
 
-	color: white;
-	transition: ease-in-out;
-	transition-duration: 300ms;
-
-	scale: 1.1;
+  scale: 1.1;
 }
 
 .gallery img {
-	width: 100%;
-
+  width: 100%;
 }
 
 #contact {
-	width: 50%;
-	margin: auto;
+  width: 50%;
+  margin: auto;
 }
 
-#contact>* {
-	text-align: center;
-
+#contact > * {
+  text-align: center;
 }
 
 #contact h2 {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #contact form {
-	text-align: left;
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 #contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 #contact label {
-	margin: 2em 0 1em 0;
+  margin: 2em 0 1em 0;
 }
 
 #contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 input[type="submit"] {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin: 2em auto;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px;
-	cursor: pointer;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
-	transform: scale(1.1);
-	/* Mise à l'échelle de 120% lors du survol */
-	transition: transform 0.3s ease;
-	/* Animation fluide */
+  transform: scale(1.1);
+  /* Mise à l'échelle de 120% lors du survol */
+  transition: transform 0.3s ease;
+  /* Animation fluide */
 }
 
 /***style log in****/
 
 #success-message {
-
-	color: rgb(17, 124, 11);
-	margin-top: 10px;
-	font-size: 25px;
-	text-align: center;
-	animation-direction: alternate;
+  color: rgb(17, 124, 11);
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation-direction: alternate;
 }
 
 @keyframes shake-animation {
-	0% {
-		transform: translateX(0);
-	}
+  0% {
+    transform: translateX(0);
+  }
 
-	10%,
-	90% {
-		transform: translateX(-10px);
-	}
+  10%,
+  90% {
+    transform: translateX(-10px);
+  }
 
-	20%,
-	80% {
-		transform: translateX(10px);
-	}
+  20%,
+  80% {
+    transform: translateX(10px);
+  }
 
-	30%,
-	50%,
-	70% {
-		transform: translateX(-10px);
-	}
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
 
-	40%,
-	60% {
-		transform: translateX(10px);
-	}
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
 
-	100% {
-		transform: translateX(0);
-	}
+  100% {
+    transform: translateX(0);
+  }
 }
-
 
 #error-message {
-	color: red;
-	margin-top: 10px;
-	font-size: 25px;
-	text-align: center;
-	animation: shake-animation 0.5s ease;
+  color: red;
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation: shake-animation 0.5s ease;
 }
 
-
 .login {
-	font-weight: bold;
-	/* Mettre le texte en gras */
-	font-size: 1.2em;
-	cursor: pointer;
-
+  font-weight: bold;
+  /* Mettre le texte en gras */
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 #portfolio .modify-link {
-	float: right;
-	/* Aligner l'élément "modifier" à droite */
-	margin-left: 10px;
-	/* Ajouter un espacement entre le titre et l'élément "modifier" */
+  display: flex;
+  float: right;
+  /* Aligner l'élément "modifier" à droite */
+  margin-left: 10px;
+  /* Ajouter un espacement entre le titre et l'élément "modifier" */
 }
 
-
 .modal {
+  display: none;
+  /* Par défaut, le modal est caché */
 
-	display: none;
-	/* Par défaut, le modal est caché */
-
-	justify-content: center;
-	align-items: center;
-	/* Centrer la modal horizontalement et verticalement */
-	position: fixed;
-	/* Position fixée pour rester au-dessus du contenu */
-	z-index: 1000;
-	/* Z-index élevé pour être au-dessus de tout le reste */
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	/* Fond semi-transparent pour assombrir le fond */
+  justify-content: center;
+  align-items: center;
+  /* Centrer la modal horizontalement et verticalement */
+  position: fixed;
+  /* Position fixée pour rester au-dessus du contenu */
+  z-index: 1000;
+  /* Z-index élevé pour être au-dessus de tout le reste */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fond semi-transparent pour assombrir le fond */
 }
 
 /***********************************Modal secondaire***************************************/
 .modalSecondary .modal-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Style pour la flèche de retour */
 .modalSecondary .back-arrow {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	font-size: 24px;
-	/* Taille de la police de la flèche */
-	cursor: pointer;
-	font-weight: bold;
-	/* Épaissir la flèche */
-	text-decoration: none;
-	/* Supprimer le soulignement */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  /* Taille de la police de la flèche */
+  cursor: pointer;
+  font-weight: bold;
+  /* Épaissir la flèche */
+  text-decoration: none;
+  /* Supprimer le soulignement */
 }
 
 /* Style pour positionner la flèche de retour */
 .modalSecondary .modal-wrapper {
-	position: relative;
+  position: relative;
 }
 
+/*******************************Message d'erreur********************************************/
+#error-message-modal {
+  display: none;
+  color: red;
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation: shake-animation 0.5s ease;
+}
+
+#success-message-modal {
+  display: none;
+  color: rgb(17, 124, 11);
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation-direction: alternate;
+}
 
 /**************************** Style des formulaires ***************************************/
 .modal-content {
-	width: 100%;
-
+  width: 100%;
 }
 
 /* Styliser le titre du formulaire */
 .modalSecondary h2 {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* Styliser le formulaire */
 .modalSecondary form {
-	text-align: left;
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-
+#illustration {
+  max-width: 100%;
+  /* La largeur maximale du cadre */
+  max-height: 300px;
+  /* La hauteur maximale du cadre */
+  margin-top: 20px;
+}
 
 /* Styliser le formulaire */
 #myModalSecondary #photoForm {
-	text-align: center;
-	background-color: #E8F1F6;
-	;
-	padding: 20px;
-	border-radius: 10px;
+  text-align: center;
+  background-color: #e8f1f6;
+
+  border-radius: 10px;
 }
 
 /* Styliser l'illustration */
 #myModalSecondary #photoForm .file-upload img {
-	max-width: 100%;
-	height: auto;
-	margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 /* Styliser le texte d'information */
 #myModalSecondary #photoForm .upload-info {
-	color: #333;
-	font-size: 14px;
-	margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 #myModalSecondary #photoForm .file-upload input[type="file"] {
-	position: absolute;
-	left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 #myModalSecondary #photoForm .file-label {
-	display: inline-block;
-	cursor: pointer;
-	padding: 10px 20px;
-	background-color: #CBD6DC;
-	;
-	color: #306685;
-	border-radius: 60px;
-	width: 173px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #cbd6dc;
+  color: #306685;
+  border-radius: 60px;
+  width: 173px;
 
-	transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 #myModalSecondary #photoForm .file-label:hover {
-	background-color: #ccc;
+  background-color: #ccc;
 }
 
 #myModalSecondary #photoForm .file-label img {
-	display: block;
-	margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Styliser les champs de saisie */
 .modalSecondary #photoForm input {
-
-	text-align: center;
-	height: 169px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  text-align: center;
+  height: 169px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 .modalSecondary #titleForm input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 .modalSecondary #categoryForm #category {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
-
 
 /* Styliser les libellés */
 .modalSecondary label {
-	margin: 1em 0 1em 0;
+  margin: 1em 0 1em 0;
 }
-
 
 h3 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-
-
 #myModalSecondary {
-	display: none;
-	/* La modal secondaire est initialement cachée */
-	position: fixed;
-	z-index: 1000;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  /* La modal secondaire est initialement cachée */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-wrapper {
-	position: relative;
-	display: flex;
-	/* Afficher les vignettes en ligne */
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	/* Passer à la ligne suivante si nécessaire */
-	background-color: white;
-	margin: 10% auto;
-	/* Centrer le modal verticalement */
-	padding: 3%;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-	/* Ombre légère */
-	width: 30%;
-
-
+  position: relative;
+  display: flex;
+  /* Afficher les vignettes en ligne */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Passer à la ligne suivante si nécessaire */
+  background-color: white;
+  margin: 10% auto;
+  /* Centrer le modal verticalement */
+  padding: 3%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Ombre légère */
+  width: 30%;
 }
 
 .outside-buttons {
-	margin-top: 5%;
+  margin-top: 5%;
 
-	width: 99%;
-	border-top: 1px solid #ccc;
-	/* Ajout de la bordure supérieure grise */
+  width: 99%;
+  border-top: 1px solid #ccc;
+  /* Ajout de la bordure supérieure grise */
 }
 
 /* Style pour centrer le titre */
 .modal-wrapper h2 {
-	text-align: center;
-	color: black;
+  text-align: center;
+  color: black;
 }
-
 
 .project-thumbnail {
-	width: 76px;
-	/* Largeur de la vignette */
-	height: 102px;
-	/* Hauteur de la vignette */
-	margin: 5px;
-	/* Réduire la marge autour de chaque vignette */
-	padding: 5px;
-	/* Ajouter un espacement interne pour un meilleur aspect */
-	box-sizing: border-box;
-	/* Inclure la marge et le padding dans la largeur et la hauteur de la vignette */
-	position: relative;
-	display: inline-block;
+  width: 76px;
+  /* Largeur de la vignette */
+  height: 102px;
+  /* Hauteur de la vignette */
+  margin: 5px;
+  /* Réduire la marge autour de chaque vignette */
+  padding: 5px;
+  /* Ajouter un espacement interne pour un meilleur aspect */
+  box-sizing: border-box;
+  /* Inclure la marge et le padding dans la largeur et la hauteur de la vignette */
+  position: relative;
+  display: inline-block;
 }
 
-
 .project-thumbnail img {
-	width: 100%;
-	/* Ajuster la taille de l'image à la taille de la vignette */
-	height: 100%;
-	/* Ajuster la taille de l'image à la taille de la vignette */
-	object-fit: cover;
-	/* Assurez-vous que l'image couvre entièrement la vignette */
+  width: 100%;
+  /* Ajuster la taille de l'image à la taille de la vignette */
+  height: 100%;
+  /* Ajuster la taille de l'image à la taille de la vignette */
+  object-fit: cover;
+  /* Assurez-vous que l'image couvre entièrement la vignette */
 }
 
 .delete-button img {
-	width: 17px;
-	/* Définir la largeur souhaitée */
-	height: 17px;
-	/* Définir la hauteur souhaitée */
+  width: 17px;
+  /* Définir la largeur souhaitée */
+  height: 17px;
+  /* Définir la hauteur souhaitée */
 }
 
 .delete-button {
-	position: absolute;
-	top: 11px;
-	right: 10px;
-	width: 20px;
-	/* Largeur de la poubelle */
-	height: 20px;
-	/* Hauteur de la poubelle */
-	background-image: url("../assets/icons/icons8-poubelle-color/icons8-poubelle-17.svg");
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  width: 20px;
+  /* Largeur de la poubelle */
+  height: 20px;
+  /* Hauteur de la poubelle */
+  background-image: url("../assets/icons/icons8-poubelle-color/icons8-poubelle-17.svg");
 
-
-	/* Utiliser la poubelle comme arrière-plan */
-	background-size: cover;
-	/* Ajuster la taille de l'image */
-	background-repeat: no-repeat;
-	/* Ne pas répéter l'image */
-	background-position: center;
-	/* Centrer l'image */
-	border: none;
-	/* Supprimer le bord */
-	cursor: pointer;
-	/* Ajouter un curseur au survol */
+  /* Utiliser la poubelle comme arrière-plan */
+  background-size: cover;
+  /* Ajuster la taille de l'image */
+  background-repeat: no-repeat;
+  /* Ne pas répéter l'image */
+  background-position: center;
+  /* Centrer l'image */
+  border: none;
+  /* Supprimer le bord */
+  cursor: pointer;
+  /* Ajouter un curseur au survol */
 }
-
 
 /* Style pour la croix de fermeture */
 .close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	padding: 10px;
-	cursor: pointer;
-	color: #aaa;
-	font-size: 28px;
-	font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Style pour le bouton "Ajouter une photo" */
 #addPhotoButton {
-	display: block;
-	margin: 0 auto;
-	/* Centrer horizontalement */
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	transition: background-color 0.3s;
-	/* Animation au survol */
-	margin: 2em auto;
-	padding: 10px 20px;
-	/* Espacement interne */
-	border: none;
-	/* Supprimer la bordure */
-	width: 237px;
-	height: 36px;
-	text-align: center;
-	border-radius: 60px;
-	cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  /* Centrer horizontalement */
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  transition: background-color 0.3s;
+  /* Animation au survol */
+  margin: 2em auto;
+  padding: 10px 20px;
+  /* Espacement interne */
+  border: none;
+  /* Supprimer la bordure */
+  width: 237px;
+  height: 36px;
+  text-align: center;
+  border-radius: 60px;
+  cursor: pointer;
 }
 
 #addPhotoButton:hover {
-	transform: scale(1.1);
-	/* Mise à l'échelle de 120% lors du survol */
-	transition: transform 0.3s ease;
-	/* Animation fluide */
+  transform: scale(1.1);
+  /* Mise à l'échelle de 120% lors du survol */
+  transition: transform 0.3s ease;
+  /* Animation fluide */
 }
 
 /* Style pour le bouton "Envoyer" */
 #sendButton {
-	display: block;
-	margin: 0 auto;
-	/* Centrer horizontalement */
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	transition: background-color 0.3s;
-	/* Animation au survol */
-	margin: 2em auto;
-	padding: 10px 20px;
-	/* Espacement interne */
-	border: none;
-	/* Supprimer la bordure */
-	width: 237px;
-	height: 36px;
-	text-align: center;
-	border-radius: 60px;
-	cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  /* Centrer horizontalement */
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #a7a7a7;
+  transition: background-color 0.3s;
+  /* Animation au survol */
+  margin: 2em auto;
+  padding: 10px 20px;
+  /* Espacement interne */
+  border: none;
+  /* Supprimer la bordure */
+  width: 237px;
+  height: 36px;
+  text-align: center;
+  border-radius: 60px;
+  cursor: pointer;
 }
 
 #sendButton:hover {
-	transform: scale(1.1);
-	/* Mise à l'échelle de 120% lors du survol */
-	transition: transform 0.3s ease;
-	/* Animation fluide */
+  background-color: #1d6154;
+  transform: scale(1.1);
+  /* Mise à l'échelle de 120% lors du survol */
+  transition: transform 0.3s ease;
+  /* Animation fluide */
 }
 
 /* Réinitialiser les styles par défaut des liens */
 a {
-	text-decoration: none;
-	/* Supprimer la soulignement par défaut */
-	color: inherit;
-	/* Utiliser la couleur par défaut du texte */
-	cursor: pointer;
-
+  text-decoration: none;
+  /* Supprimer la soulignement par défaut */
+  color: inherit;
+  /* Utiliser la couleur par défaut du texte */
+  cursor: pointer;
 }
 
 /* Style pour l'effet de survol */
 li:hover {
-	transform: scale(1.2);
-	/* Mise à l'échelle de 120% lors du survol */
-	transition: transform 0.3s ease;
-	/* Animation fluide */
+  transform: scale(1.2);
+  /* Mise à l'échelle de 120% lors du survol */
+  transition: transform 0.3s ease;
+  /* Animation fluide */
 }
 
 /* Style pour les liens au clic */
 a:active,
 a:focus {
-	color: #1D6154;
-	/* Couleur du lien au clic ou focus */
+  color: #1d6154;
+  /* Couleur du lien au clic ou focus */
 }
 
 #forgot-password {
-	margin-top: 10px;
-	font-size: 14px;
-	text-align: center;
-	/* Centrage horizontal du texte */
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  /* Centrage horizontal du texte */
 }
 
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
 }
