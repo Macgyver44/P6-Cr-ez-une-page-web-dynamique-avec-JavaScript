@@ -95,11 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
     editModeBar.style.display = "block";
 
     // Sélectionner l'élément parent où vous souhaitez insérer le contenu HTML
-    const portfolioSection = document.getElementById("portfolio");
+    const portfolioSection = document.getElementById("SectionModif");
     // Créer le contenu HTML de l'élément "modifier" et du titre
-    const modifyHTML = `<span class="modify-link">
-            <a href="#" onclick="openModal()">✏️Modifier</a>
-        </span>`;
+    const modifyHTML = `<a href="#" onclick="openModal()">✏️Modifier</a>`;
 
     // Insérer le contenu HTML juste avant la fin de l'élément parent
     portfolioSection.insertAdjacentHTML("afterbegin", modifyHTML);

@@ -52,7 +52,12 @@
       </article>
     </section>
     <section id="portfolio">
+      <h2>Mes Projets<div id="SectionModif"></div>
+      </h2>
 
+      <div class="gallery">
+        <!--Injection dynamique des elements avec javascript ICI-->
+      </div>
 
 
       <!-- Modal primaire -->
@@ -85,54 +90,47 @@
           <h2>Ajout Photo</h2>
           <!-- Contenu de la galerie -->
           <div class="modal-content">
-            <!-- Formulaire pour envoyer une photo -->
-            <form id="photoForm" class="form">
 
-              <div class="illustration">
-                <img id="illustration" src="FrontEnd/assets/icons/Vector.svg" alt="Illustration">
+
+            <form id="ProjetForm" class="form">
+              <!-- Formulaire pour envoyer une photo -->
+              <div id="imageForm" class="SectionPreviewImage">
+                <div class="illustration">
+                  <img id="illustration" src="FrontEnd/assets/icons/Vector.svg" alt="Illustration">
+                </div>
+                <div class="file-upload">
+                  <label for="photo" class="file-label">+ Ajouter photo</label>
+                  <input type="file" name="photo" id="photo" accept="image/*" required>
+                </div>
+                <p class="upload-info">jpg, png : 4mo max</p>
               </div>
-              <div class="file-upload">
-                <label for="photo" class="file-label">
-                  + Ajouter photo
-                </label>
-                <input type="file" name="photo" id="photo" accept="image/*">
+
+              <!-- Formulaire pour choisir un titre -->
+              <div id="titleForm" class="form">
+                <h3>Titre</h3>
+                <input type="text" name="title" id="title" required>
               </div>
-              <p class="upload-info">jpg, png : 4mo max</p>
 
+              <!-- Formulaire pour choisir une catégorie -->
+              <div id="categoryForm" class="form">
+                <h3>Catégorie</h3>
+                <select name="category" id="category" required>
+                  <!-- Options de catégories dynamiquement générées -->
+                </select>
+              </div>
+
+              <!-- Messages de succès et d'erreur -->
+              <div id="success-message-modal">L'envoi du formulaire a été effectué
+                avec succès !</div>
+              <div id="error-message-modal">Une erreur est survenue lors de l'envoi
+                du formulaire. Veuillez réessayer.</div>
+
+              <!-- Bouton pour soumettre le formulaire -->
+              <div class="outside-buttons">
+                <button type="submit" id="sendButton">Valider</button>
+              </div>
             </form>
-            <!-- Formulaire pour choisir un titre -->
-            <div id="success-message-modal">L'envoi du formulaire a été effectué avec succès !</div>
-            <div id="error-message-modal">Une erreur est survenue lors de l'envoi du formulaire.
-              Veuillez réessayer.
-            </div>
-            <form id="titleForm" class="form">
-              <h3>Titre</h3>
-              <input type="text" name="title" id="title">
-            </form>
-            <!-- Formulaire pour choisir une catégorie -->
-            <form id="categoryForm" class="form">
-              <h3>Catégorie</h3>
-              <select name="category" id="category">
-                <!-- Options de catégories dynamiquement générées -->
-              </select>
-            </form>
-          </div>
-          <!-- Boutons en dehors de la modal -->
-          <div class="outside-buttons">
-            <!-- Bouton pour ajouter une photo -->
-            <button id="sendButton">Valider</button>
-          </div>
-        </div>
-      </div>
 
-
-
-
-
-      <h2>Mes Projets</h2>
-      <div class="gallery">
-        <!--Injection dynamique des elements avec javascript ICI-->
-      </div>
     </section>
     <section id="contact">
       <h2>Contact</h2>

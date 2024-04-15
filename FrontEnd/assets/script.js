@@ -3,9 +3,16 @@ let works = [];
 let categories = [];
 let token;
 let projectId;
-let selectedImage; // Déclaration d'une variable globale pour stocker l'image sélectionnée
+// Déclaration d'une variable globale pour stocker l'image sélectionnée
+let selectedImage;
+
 // Appel de la fonction d'initialisation de l'application.
 initializeApp();
+
+//Premiere Partie du Programme "Afichage des projets"//Premiere Partie du Programme "Afichage des projets"
+//Premiere Partie du Programme "Afichage des projets"//Premiere Partie du Programme "Afichage des projets"
+//Premiere Partie du Programme "Afichage des projets"//Premiere Partie du Programme "Afichage des projets"
+
 // Fonction principale pour initialiser l'application.
 async function initializeApp() {
   try {
@@ -132,58 +139,52 @@ function renderProjects(filter = "Tous") {
 
 //Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
 //Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
+//Seconde Partie du Programme "La Modale"//Seconde Partie du Programme "La Modale"
 
 // Fonction pour ouvrir le modal et afficher les projets sous forme de vignettes
 function openModal() {
-  var modal = document.getElementById("myModal");
+  const modal = document.getElementById("myModal");
   modal.style.display = "block";
-
-  // Sélectionner la modal et son contenu
-  var modalContent = document.querySelector(".modal-content");
-
-  // Effacer le contenu précédent de la modal
+  // Sélectionnée la modal et son contenu
+  const modalContent = document.querySelector(".modal-content");
   modalContent.innerHTML = "";
-
   // Pour chaque projet, créer une vignette et l'ajouter à la modal
   works.forEach((project) => {
-    const projectThumbnail = document.createElement("div");
-    projectThumbnail.classList.add("project-thumbnail");
-
-    // Créer l'image
-    const image = document.createElement("img");
-    image.src = project.imageUrl ?? "(Pas d'image)";
-    image.alt = project.title ?? "(pas de alt)";
-
-    // Créer le bouton de suppression en forme de poubelle
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-
-    deleteButton.addEventListener("click", () => {
-      deleteProject(project.id);
-    });
-
-    // Ajouter l'image et le bouton à la vignette
-    projectThumbnail.appendChild(image);
-    projectThumbnail.appendChild(deleteButton);
-
-    // Ajouter la vignette à la modal
+    const projectThumbnail = createProjectThumbnail(project);
     modalContent.appendChild(projectThumbnail);
   });
+}
 
-  console.log("Projets affichés dans la modal");
+// Fonction pour créer une vignette de projet
+function createProjectThumbnail(project) {
+  const projectThumbnail = document.createElement("div");
+  projectThumbnail.classList.add("project-thumbnail");
+  // Créer l'image
+  const image = document.createElement("img");
+  image.src = project.imageUrl ?? "(Pas d'image)";
+  image.alt = project.title ?? "(pas de alt)";
+  // Créer le bouton de suppression en forme de poubelle
+  const deleteButton = createDeleteButton(project.id);
+  projectThumbnail.appendChild(image);
+  projectThumbnail.appendChild(deleteButton);
+
+  return projectThumbnail;
+}
+
+// Fonction pour créer le bouton de suppression
+function createDeleteButton(projectId) {
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button");
+  deleteButton.addEventListener("click", () => deleteProject(projectId));
+  return deleteButton;
 }
 
 // Fonction pour supprimer un projet
 function deleteProject(projectId) {
-  console.log("Token récupéré depuis le localStorage :", token);
-  console.log("verification du projet avec l'ID :", projectId);
-  // La logique pour supprimer le projet avec l'ID spécifié
-
   // Afficher une boîte de dialogue de confirmation
   const confirmation = window.confirm(
     "Êtes-vous sûr de vouloir supprimer ce projet ?"
   );
-
   // Vérifier si l'utilisateur a confirmé la suppression
   if (confirmation) {
     // Supprimer le projet de la modal
@@ -193,24 +194,19 @@ function deleteProject(projectId) {
     if (projectThumbnail) {
       projectThumbnail.remove();
     }
-
     // Requête fetch pour supprimer le projet
     fetch(`http://localhost:5678/api/works/${projectId}`, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         if (response.ok) {
-          // Si la suppression réussit, vous pouvez mettre à jour l'interface utilisateur ou effectuer d'autres actions nécessaires.
           console.log("Le projet a été supprimé avec succès.");
-          // supprimer l'image de la modale.
           // Rafraîchir la galerie
           renderProjects();
         } else {
           console.error(
-            "La suppression du projet a échoué. Réponse incorect de L'API"
+            "La suppression du projet a échoué. Réponse incorrecte de l'API"
           );
         }
       })
@@ -220,190 +216,194 @@ function deleteProject(projectId) {
   }
 }
 
-// Déclaration des variables globales pour les modals
-var modal = document.getElementById("myModal");
-var modalSecondary = document.getElementById("myModalSecondary");
-
-// Récupérer le bouton de fermeture des modales
-var closeBtn = modal.querySelector(".close");
-var closeBtnSecondary = modalSecondary.querySelector(".close");
-
-// Écouter le clic sur le bouton de fermeture des modales
-closeBtn.addEventListener("click", closeModal);
-closeBtnSecondary.addEventListener("click", closeModal);
-
-// Écouter le clic en dehors du modal pour le fermer
-window.addEventListener("click", function (event) {
-  if (event.target == modal || event.target == modalSecondary) {
-    closeModal();
-  }
-});
-
-// Fonction pour fermer le modal et mise a jour de la page Projects.
+// Fonction pour fermer le modal et mettre à jour la page Projects
 function closeModal() {
+  const modal = document.getElementById("myModal");
+  const modalSecondary = document.getElementById("myModalSecondary");
   modal.style.display = "none";
   modalSecondary.style.display = "none";
+  // Rafraîchir la galerie
   renderProjects();
 }
 
-// Récupérer le bouton "Ajouter une photo" de la modal primaire
-const addPhotoButtonPrimary = document.getElementById("addPhotoButton");
+// Gestion des événements (interface,entrer,sortie) de la modal
+function setupModalEvents() {
+  const modal = document.getElementById("myModal");
+  const modalSecondary = document.getElementById("myModalSecondary");
+  // Récupérer le bouton de fermeture des modales
+  const closeBtn = modal.querySelector(".close");
+  const closeBtnSecondary = modalSecondary.querySelector(".close");
+  // Récupérer le bouton "Ajouter une photo" de la modal primaire
+  const addPhotoButtonPrimary = document.getElementById("addPhotoButton");
+  // Récupérer la flèche de retour pour afficher la modal primaire ensuite.
+  const backArrow = document.querySelector(".back-arrow");
+  // Écouter le clic sur le bouton de fermeture des modales
+  closeBtn.addEventListener("click", closeModal);
+  closeBtnSecondary.addEventListener("click", closeModal);
+  // Écouter le clic en dehors du modal pour le fermer
+  window.addEventListener("click", (event) => {
+    if (event.target == modal || event.target == modalSecondary) {
+      closeModal();
+    }
+  });
+  // Ajouter un événement d'écoute au bouton "Ajouter une photo" de la modal primaire
+  addPhotoButtonPrimary.addEventListener("click", () => {
+    // Cacher la modal primaire
+    modal.style.display = "none";
+    // Afficher la modal secondaire
+    modalSecondary.style.display = "block";
+  });
+  // Ajouter un événement au clic à la flèche de retour de la modale secondaire
+  backArrow.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalSecondary.style.display = "none";
+  });
+}
 
-// Ajouter un événement d'écoute au bouton "Ajouter une photo" de la modal primaire
-addPhotoButtonPrimary.addEventListener("click", function () {
-  // Cacher la modal primaire
-  modal.style.display = "none";
+// Appel de la fonction pour configurer les événements du modal Appeler ici pour etre sur que le DOM soit chargé.
+setupModalEvents();
 
-  // Afficher la modal secondaire
-  modalSecondary.style.display = "block";
-});
+//Troisième Partie du Programme "envoie des works a l'API"//Troisième Partie du Programme "envoie des works a l'API"
+//Troisième Partie du Programme "envoie des works a l'API"//Troisième Partie du Programme "envoie des works a l'API"
+//Troisième Partie du Programme "envoie des works a l'API"//Troisième Partie du Programme "envoie des works a l'API"
 
-// Récupérer la flèche de retour pour aficher la modal primaire ensuite.
-const backArrow = document.querySelector(".back-arrow");
-
-// Ajouter un événement de clic à la flèche de retour
-backArrow.addEventListener("click", () => {
-  // Afficher la modal primaire
-  modal.style.display = "block";
-  // Cacher la modal secondaire
-  modalSecondary.style.display = "none";
-});
-
-//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
-//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
-//Troisième Partie du Programme "envoie API des works"//Troisième Partie du Programme "envoie API des works"
-
-// Récupérer les catégories depuis l'API
-// Récupérer les catégories depuis l'API
-fetch("http://localhost:5678/api/categories")
-  .then((response) => response.json())
-  .then((categories) => {
-    // Sélectionne l'élément du menu déroulant
-    const select = document.getElementById("category");
-
-    // Parcourir les catégories et les ajouter au menu déroulant
-    categories.forEach((category) => {
-      const option = document.createElement("option");
-      option.text = category.name;
-      option.value = category.id;
-      select.appendChild(option);
-    });
-  })
-
-  .catch((error) =>
-    console.error("Erreur lors de la récupération des catégories :", error)
-  );
-
-//Fonction Affichage des fichiers prechargé, dans la vignette.
-//Fonction Affichage des fichiers prechargé, dans la vignette.
-// Sélectionnez l'élément input de type fichier
-const input = document.getElementById("photo");
-
-// Ajoutez un écouteur d'événements pour détecter les changements dans l'élément input
-input.addEventListener("change", function (event) {
-  // Sélectionnez la div form
-  const formDiv = document.querySelector(".form");
-
-  // Vérifiez si un fichier a été sélectionné
-  if (input.files && input.files[0]) {
-    const file = input.files[0]; // Récupérez le fichier sélectionné
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-      // Créez une balise img
-      const img = document.createElement("img");
-      // Mettez à jour la source de l'image avec l'URL de l'image sélectionnée
-      img.src = e.target.result;
-      // Ajoutez la classe CSS si nécessaire
-      img.classList.add("preview-image");
-      // Ajoutez des styles CSS pour centrer l'image et la redimensionner en miniature
-      img.style.width = "169px"; // Définissez la largeur de l'image
-      img.style.height = "auto"; // Laissez la hauteur s'ajuster automatiquement
-      img.style.display = "block"; // Affichez l'image en tant que bloc
-      img.style.margin = "0 auto"; // Centrez l'image horizontalement
-
-      // Ajoutez l'image à la div form
-      formDiv.innerHTML = ""; // Effacez le contenu précédent de la div form
-      formDiv.appendChild(img);
-    };
-
-    // Lisez le fichier en tant qu'URL de données
-    reader.readAsDataURL(file);
-  }
-});
-
-// Envoyer les informations du formulaire au serveur via Fetch API
-// Envoyer les informations du formulaire au serveur via Fetch API
-const form = document.getElementById("photoForm");
-
-// Ajouter un écouteur d'événements pour la soumission du formulaire
-sendButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Empêcher le comportement par défaut du formulaire
-
-  const titleInput = document.getElementById("title").value;
-  const categoryInput = document.getElementById("category").value;
-
-  // Créer un objet contenant les données à envoyer
-  const formData = {
-    title: titleInput,
-    categoryID: categoryInput, // Envoyez l'objet de catégorie complet
-    imageUrl: selectedImage, // Utilisez l'image stockée ici
-  };
-  console.log("Donner du formulaire  =", formData);
-
-  // Récupérer le token depuis le localStorage
-  const token = localStorage.getItem("token");
-
-  // Construire les en-têtes de la requête avec le token
-  const headers = {
-    Authorization: `Bearer ${token}`,
-    "Content-Type": "application/json", // Indiquer que le contenu est au format JSON
-  };
-
-  // Envoyer les données au serveur
-  fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify(formData), // Convertir l'objet en JSON
-  })
+// Fonction pour récupérer les catégories depuis l'API et les afficher dans le menu déroulant.
+function fetchAndDisplayCategories() {
+  fetch("http://localhost:5678/api/categories")
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Erreur lors de l'envoi du formulaire");
+        throw new Error("La requête fetch pour les catégories a échoué");
       }
       return response.json();
     })
-    .then((data) => {
-      // Traiter la réponse de l'API
-      console.log("Réponse de l'API :", data);
-      // Afficher le message de succès
-      document.getElementById("success-message-modal").style.display = "block";
-      // Cacher le message d'erreur s'il est affiché
-      document.getElementById("error-message-modal").style.display = "none";
-      // Rafraîchir la galerie
-      refreshGallery();
+    .then((categories) => {
+      const select = document.getElementById("category");
+      // Parcourir les catégories et les ajouter au menu déroulant
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.text = category.name;
+        option.value = category.id;
+        select.appendChild(option);
+      });
     })
     .catch((error) => {
-      // Gérer les erreurs d'envoi du formulaire
-      console.error("Erreur lors de l'envoi du formulaire :", error);
-      // Afficher le message d'erreur
-      document.getElementById("error-message-modal").style.display = "block";
-      // Cacher le message de succès s'il est affiché
-      document.getElementById("success-message-modal").style.display = "none";
-      // Effacer le message d'erreur modal après quelques secondes
-      setTimeout(() => {
-        const errorMessageModal = document.getElementById(
-          "error-message-modal"
-        );
-        if (errorMessageModal) {
-          errorMessageModal.style.display = "none";
-        }
-      }, 3000);
+      console.error("Erreur lors de la récupération des catégories :", error);
     });
-});
+}
+const FileInsertion = document.getElementById("photo");
+const imageInput = document.getElementById("photo").files[0]; // Récupérer le fichier d'image
 
-// Fonction pour rafraîchir la galerie après l'envoi du formulaire
+// Fonction pour afficher l'image préchargée dans la vignette.
+//et la recuperer pour la transmettre a la fonction envoie API a travere une variable Globale.
+function displayPreloadedImage() {
+  const FileInsertion = document.getElementById("photo");
+  FileInsertion.addEventListener("change", function (event) {
+    const formDiv = document.querySelector(".SectionPreviewImage");
+    if (FileInsertion.files && FileInsertion.files[0]) {
+      // verifie la presence et <&&> permet d'obtenir le premier fichier de la liste. retourne True ou false.
+      const file = FileInsertion.files[0]; // Récupérez le premier fichier sélectionné
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        // Les données binaires du fichier sont accessibles dans e.target.result
+        //À l'intérieur de cette fonction, vous pouvez accéder aux données lues à partir du fichier via e.target.result.
+        //C'est là que vous pouvez effectuer des opérations sur les données lues,
+        //comme l'affichage d'une image dans une balise img ou le traitement des données binaires.
+        const ImageData = e.target.result;
+
+        /*  // Stocker les données de l'image préchargée dans la variable globale
+        selectedImage = ImageData; */
+
+        // Afficher l'image dans la page
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.classList.add("preview-image");
+        img.style.width = "169px";
+        img.style.height = "auto";
+        img.style.display = "block";
+        img.style.margin = "0 auto";
+        formDiv.innerHTML = "";
+        formDiv.appendChild(img);
+      };
+      // Lisez le fichier en tant que Data URL (base64)
+      reader.readAsDataURL(file);
+    }
+  });
+}
+
+// Fonction pour envoyer les données du formulaire au serveur via une Fetch vers l'API.
+function sendFormData() {
+  const form = document.getElementById("ProjetForm");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const titleInput = document.getElementById("title").value;
+    const categoryInput = document.getElementById("category").value;
+
+    // Construire l'objet FormData
+    const formData = new FormData();
+    formData.append("title", titleInput);
+    formData.append("category", parseInt(categoryInput)); // Convertir en entier pour respecter le format attendu par L'API.
+    formData.append("image", imageInput);
+
+    console.log("Données du formulaire titre =", titleInput);
+    console.log("Données du formulaire categorie=", categoryInput);
+    console.log("Données de la variable SelectedImage =", selectedImage);
+
+    console.log("Données du formulaire pret a l'envoie fetch=", formData);
+
+    // Récupérer le token depuis le localStorage
+    const token = localStorage.getItem("token");
+
+    // Construire les en-têtes de la requête avec le token
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      // "Content-Type": "application/json",
+    };
+    // Envoyer les données au serveur
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: headers,
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de l'envoi du formulaire");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Réponse de l'API :", data);
+        document.getElementById("success-message-modal").style.display =
+          "block";
+        document.getElementById("error-message-modal").style.display = "none";
+        // Rafraîchir la galerie
+        refreshGallery();
+      })
+      .catch((error) => {
+        // Gérer les erreurs d'envoi du formulaire
+        console.error("Erreur lors de l'envoi du formulaire :", error);
+        document.getElementById("error-message-modal").style.display = "block";
+        document.getElementById("success-message-modal").style.display = "none";
+        // Effacer le message d'erreur modal après quelques secondes
+        setTimeout(() => {
+          const errorMessageModal = document.getElementById(
+            "error-message-modal"
+          );
+          if (errorMessageModal) {
+            errorMessageModal.style.display = "none";
+          }
+        }, 3000);
+      });
+  });
+}
+
+// Fonction pour rafraîchir la galerie après l'envoi du formulaire.
 function refreshGallery() {
-  // Code pour rafraîchir la galerie
   renderProjects();
   console.log("Galerie rafraîchie avec succès !");
 }
+
+// Appeler les fonctions pour initialiser les comportements du formulaire. Appeler ici pour etre sur que le DOM soit chargé.
+fetchAndDisplayCategories();
+displayPreloadedImage();
+sendFormData();

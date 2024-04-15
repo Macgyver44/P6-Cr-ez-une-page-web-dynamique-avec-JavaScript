@@ -398,7 +398,7 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 
-#portfolio .modify-link {
+#portfolio #SectionModif {
   display: flex;
   float: right;
   /* Aligner l'élément "modifier" à droite */
@@ -481,7 +481,7 @@ input[type="submit"]:hover {
 }
 
 /* Styliser le formulaire */
-.modalSecondary form {
+.modalSecondary .form {
   text-align: left;
   margin-top: 30px;
   display: flex;
@@ -497,7 +497,7 @@ input[type="submit"]:hover {
 }
 
 /* Styliser le formulaire */
-#myModalSecondary #photoForm {
+#myModalSecondary #imageForm {
   text-align: center;
   background-color: #e8f1f6;
 
@@ -505,25 +505,25 @@ input[type="submit"]:hover {
 }
 
 /* Styliser l'illustration */
-#myModalSecondary #photoForm .file-upload img {
+#myModalSecondary #imageForm .file-upload img {
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
 }
 
 /* Styliser le texte d'information */
-#myModalSecondary #photoForm .upload-info {
+#myModalSecondary #imageForm .upload-info {
   color: #333;
   font-size: 14px;
   margin-bottom: 10px;
 }
 
-#myModalSecondary #photoForm .file-upload input[type="file"] {
+#myModalSecondary #imageForm .file-upload input[type="file"] {
   position: absolute;
   left: -9999px;
 }
 
-#myModalSecondary #photoForm .file-label {
+#myModalSecondary #imageForm .file-label {
   display: inline-block;
   cursor: pointer;
   padding: 10px 20px;
@@ -535,17 +535,17 @@ input[type="submit"]:hover {
   transition: background-color 0.3s ease;
 }
 
-#myModalSecondary #photoForm .file-label:hover {
+#myModalSecondary #imageForm .file-label:hover {
   background-color: #ccc;
 }
 
-#myModalSecondary #photoForm .file-label img {
+#myModalSecondary #imageForm .file-label img {
   display: block;
   margin: 0 auto;
 }
 
 /* Styliser les champs de saisie */
-.modalSecondary #photoForm input {
+.modalSecondary #imageForm input {
   text-align: center;
   height: 169px;
   font-size: 1.2em;
