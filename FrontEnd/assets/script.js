@@ -310,8 +310,8 @@ function displayPreloadedImage() {
         //comme l'affichage d'une image dans une balise img ou le traitement des données binaires.
         const ImageData = e.target.result;
 
-        /*  // Stocker les données de l'image préchargée dans la variable globale
-        selectedImage = ImageData; */
+        // Stocker les données de l'image préchargée dans la variable globale
+        selectedImage = ImageData;
 
         // Afficher l'image dans la page
         const img = document.createElement("img");
