@@ -366,6 +366,7 @@ function sendFormData() {
       body: formData,
     })
       .then((response) => {
+        console.log("verification de la réponse de l'API =", response);
         if (!response.ok) {
           throw new Error("Erreur lors de l'envoi du formulaire");
         }
