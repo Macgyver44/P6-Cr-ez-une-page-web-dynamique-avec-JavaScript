@@ -290,43 +290,57 @@ function fetchAndDisplayCategories() {
       console.error("Erreur lors de la récupération des catégories :", error);
     });
 }
-const FileInsertion = document.getElementById("photo");
-const imageInput = document.getElementById("photo").files[0]; // Récupérer le fichier d'image
+// Fonction pour afficher la miniature de l'image sélectionnée
+function displayImageThumbnail(file) {
+  const formDiv = document.querySelector(".SectionPreviewImage");
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      // Les données binaires du fichier sont accessibles dans e.target.result
+      //À l'intérieur de cette fonction, vous pouvez accéder aux données lues à partir du fichier via e.target.result.
+      //C'est là que vous pouvez effectuer des opérations sur les données lues,
+      //comme l'affichage d'une image dans une balise img ou le traitement des données binaires.
 
-// Fonction pour afficher l'image préchargée dans la vignette.
-//et la recuperer pour la transmettre a la fonction envoie API a travere une variable Globale.
-function displayPreloadedImage() {
-  const FileInsertion = document.getElementById("photo");
-  FileInsertion.addEventListener("change", function (event) {
-    const formDiv = document.querySelector(".SectionPreviewImage");
-    if (FileInsertion.files && FileInsertion.files[0]) {
-      // verifie la presence et <&&> permet d'obtenir le premier fichier de la liste. retourne True ou false.
-      const file = FileInsertion.files[0]; // Récupérez le premier fichier sélectionné
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        // Les données binaires du fichier sont accessibles dans e.target.result
-        //À l'intérieur de cette fonction, vous pouvez accéder aux données lues à partir du fichier via e.target.result.
-        //C'est là que vous pouvez effectuer des opérations sur les données lues,
-        //comme l'affichage d'une image dans une balise img ou le traitement des données binaires.
-        const ImageData = e.target.result;
+      // Afficher la structure dans la page
+      img.classList.add("preview-image");
+      img.style.width = "169px";
+      img.style.height = "auto";
+      img.style.display = "block";
+      img.style.margin = "0 auto";
+      formDiv.innerHTML = ""; // Effacer le contenu précédent
+      formDiv.appendChild(img);
+    };
+    // Lire le fichier en tant que Data URL (base64)
+    reader.readAsDataURL(file);
+    console.log("Données du fichier dans displayImageThumbnail =", file);
+  }
+}
 
-        // Stocker les données de l'image préchargée dans la variable globale
-        selectedImage = ImageData;
+// Fonction pour récupérer le fichier image sélectionné et le stocker dans une variable globale
+function getImageData() {
+  const fileInsertion = document.getElementById("photo");
+  const file = fileInsertion.files[0]; // Récupérez le premier fichier sélectionné
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Stocker les données de l'image sélectionnée dans la variable globale
+      selectedImage = e.target.result;
+    };
+    // Lire le fichier en tant que Data URL (base64)
+    reader.readAsDataURL(file);
+    console.log("Données du fichier dans getImageData =", file);
+  }
+}
 
-        // Afficher l'image dans la page
-        const img = document.createElement("img");
-        img.src = e.target.result;
-        img.classList.add("preview-image");
-        img.style.width = "169px";
-        img.style.height = "auto";
-        img.style.display = "block";
-        img.style.margin = "0 auto";
-        formDiv.innerHTML = "";
-        formDiv.appendChild(img);
-      };
-      // Lisez le fichier en tant que Data URL (base64)
-      reader.readAsDataURL(file);
-    }
+// Fonction pour écouter les changements sur le champ de fichier et déclencher les actions associées
+function listenToFileInput() {
+  const fileInsertion = document.getElementById("photo");
+  fileInsertion.addEventListener("change", function (event) {
+    const file = fileInsertion.files[0]; // Récupérez le premier fichier sélectionné
+    displayImageThumbnail(file); // Afficher la miniature de l'image sélectionnée
+    getImageData(); // Récupérer les données de l'image sélectionnée
   });
 }
 
@@ -343,7 +357,7 @@ function sendFormData() {
     const formData = new FormData();
     formData.append("title", titleInput);
     formData.append("category", parseInt(categoryInput)); // Convertir en entier pour respecter le format attendu par L'API.
-    formData.append("image", imageInput);
+    formData.append("image", selectedImage);
 
     console.log("Données du formulaire titre =", titleInput);
     console.log("Données du formulaire categorie=", categoryInput);
@@ -406,5 +420,5 @@ function refreshGallery() {
 
 // Appeler les fonctions pour initialiser les comportements du formulaire. Appeler ici pour etre sur que le DOM soit chargé.
 fetchAndDisplayCategories();
-displayPreloadedImage();
+listenToFileInput();
 sendFormData();
