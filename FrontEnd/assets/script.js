@@ -318,50 +318,37 @@ function displayImageThumbnail(file) {
   }
 }
 
-// Fonction pour récupérer le fichier image sélectionné et le stocker dans une variable globale
-function getImageData() {
-  const fileInsertion = document.getElementById("photo");
-  const file = fileInsertion.files[0]; // Récupérez le premier fichier sélectionné
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      // Stocker les données de l'image sélectionnée dans la variable globale
-      selectedImage = e.target.result;
-    };
-    // Lire le fichier en tant que Data URL (base64)
-    reader.readAsDataURL(file);
-    console.log("Données du fichier dans getImageData =", file);
-  }
-}
-
 // Fonction pour écouter les changements sur le champ de fichier et déclencher les actions associées
+//récupérer le fichier image sélectionné et le stocker dans une variable globale
 function listenToFileInput() {
   const fileInsertion = document.getElementById("photo");
   fileInsertion.addEventListener("change", function (event) {
     const file = fileInsertion.files[0]; // Récupérez le premier fichier sélectionné
     displayImageThumbnail(file); // Afficher la miniature de l'image sélectionnée
-    getImageData(); // Récupérer les données de l'image sélectionnée
+    selectedImage = event.target.files[0];
+    console.log("Données du fichier dans ListenToInput =", file);
   });
 }
 
 // Fonction pour envoyer les données du formulaire au serveur via une Fetch vers l'API.
 function sendFormData() {
   const form = document.getElementById("ProjetForm");
+  //gestion du submitform
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const titleInput = document.getElementById("title").value;
     const categoryInput = document.getElementById("category").value;
 
-    // Construire l'objet FormData
-    const formData = new FormData();
-    formData.append("title", titleInput);
-    formData.append("category", parseInt(categoryInput)); // Convertir en entier pour respecter le format attendu par L'API.
-    formData.append("image", selectedImage);
-
     console.log("Données du formulaire titre =", titleInput);
     console.log("Données du formulaire categorie=", categoryInput);
     console.log("Données de la variable SelectedImage =", selectedImage);
+
+    // Construire l'objet FormData
+    const formData = new FormData();
+    formData.append("image", selectedImage);
+    formData.append("title", titleInput);
+    formData.append("category", parseInt(categoryInput)); // Convertir en entier pour respecter le format attendu par L'API.
 
     console.log("Données du formulaire pret a l'envoie fetch=", formData);
 

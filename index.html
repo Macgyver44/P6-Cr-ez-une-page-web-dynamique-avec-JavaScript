@@ -14,16 +14,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
   <meta name="description" content="">
   <link rel="stylesheet" href="FrontEnd/assets/style.css">
-  <script src="FrontEnd/assets/config.js"> defer</script>
   <script src="FrontEnd/assets/script.js" defer></script>
-  <script src="FrontEnd/process_login.js" defer></script>
+  <script src="FrontEnd/process_login.js"></script>
+
 </head>
 
 <body>
-  <!-- Barre noire en haut de la page -->
-  <div id="editModeBar" class="edit-mode-bar">📝 Mode Édition</div>
   <header>
-
     <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
     <nav>
       <ul>
@@ -52,14 +49,14 @@
       </article>
     </section>
     <section id="portfolio">
-      <h2>Mes Projets<div id="SectionModif"></div>
-      </h2>
+
+      <div id="SectionModif">
+        <h2>Mes Projets</h2>
+      </div>
 
       <div class="gallery">
         <!--Injection dynamique des elements avec javascript ICI-->
       </div>
-
-
       <!-- Modal primaire -->
       <div id="myModal" class="modal">
         <!-- Contenu de la modal -->
@@ -79,6 +76,7 @@
           </div>
         </div>
       </div>
+
       <!-- Modal secondaire -->
       <div id="myModalSecondary" class="modalSecondary">
         <!-- Contenu de la modal -->
@@ -90,8 +88,6 @@
           <h2>Ajout Photo</h2>
           <!-- Contenu de la galerie -->
           <div class="modal-content">
-
-
             <form id="ProjetForm" class="form">
               <!-- Formulaire pour envoyer une photo -->
               <div id="imageForm" class="SectionPreviewImage">
@@ -135,7 +131,7 @@
     <section id="contact">
       <h2>Contact</h2>
       <p>Vous avez un projet ? Discutons-en !</p>
-      <form action="#" method="post">
+      <form action="#" method="#">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name">
         <label for="email">Email</label>

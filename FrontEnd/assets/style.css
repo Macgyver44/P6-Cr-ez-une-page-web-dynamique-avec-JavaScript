@@ -231,7 +231,6 @@ li:hover {
 
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
 }
 
 /****Zone filters*****/
@@ -400,15 +399,18 @@ input[type="submit"]:hover {
 
 #portfolio #SectionModif {
   display: flex;
-  float: right;
-  /* Aligner l'élément "modifier" à droite */
-  margin-left: 10px;
-  /* Ajouter un espacement entre le titre et l'élément "modifier" */
+  flex-direction: row-reverse;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 2em;
 }
 
 .modal {
   display: none;
   /* Par défaut, le modal est caché */
+  overflow: auto;
 
   justify-content: center;
   align-items: center;
@@ -472,6 +474,9 @@ input[type="submit"]:hover {
 
 /**************************** Style des formulaires ***************************************/
 .modal-content {
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap; */
   width: 100%;
 }
 
@@ -483,7 +488,7 @@ input[type="submit"]:hover {
 /* Styliser le formulaire */
 .modalSecondary .form {
   text-align: left;
-  margin-top: 30px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -619,6 +624,7 @@ h3 {
 .modal-wrapper h2 {
   text-align: center;
   color: black;
+  margin-bottom: 20px;
 }
 
 .project-thumbnail {
