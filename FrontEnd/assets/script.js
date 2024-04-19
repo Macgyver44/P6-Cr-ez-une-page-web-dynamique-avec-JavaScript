@@ -203,7 +203,7 @@ function deleteProject(projectId) {
         if (response.ok) {
           console.log("Le projet a été supprimé avec succès.");
           // Rafraîchir la galerie
-          renderProjects();
+          refreshGallery();
         } else {
           console.error(
             "La suppression du projet a échoué. Réponse incorrecte de l'API"
@@ -223,7 +223,7 @@ function closeModal() {
   modal.style.display = "none";
   modalSecondary.style.display = "none";
   // Rafraîchir la galerie
-  renderProjects();
+  refreshGallery();
 }
 
 // Gestion des événements (interface,entrer,sortie) de la modal
@@ -343,6 +343,47 @@ function sendFormData() {
     console.log("Données du formulaire titre =", titleInput);
     console.log("Données du formulaire categorie=", categoryInput);
     console.log("Données de la variable SelectedImage =", selectedImage);
+
+    // Vérification si le titre est présent
+    if (!titleInput) {
+      const errorMessageModal = document.getElementById("error-message-modal");
+      errorMessageModal.style.display = "block";
+      errorMessageModal.innerText = "Veuillez entrer un titre pour le projet.";
+      console.log("Test de titre NON  réussi");
+      return;
+    }
+
+    // Vérification si une image est sélectionnée
+    if (!selectedImage) {
+      const errorMessageModal = document.getElementById("error-message-modal");
+      errorMessageModal.innerText =
+        "Veuillez sélectionner une image pour le projet.";
+      errorMessageModal.style.display = "block";
+      console.log("Test NON réussi pour la sélection d'image");
+      return;
+    }
+
+    // Vérification si l'image est au format JPEG ou PNG et ne dépasse pas 4 Mo
+    if (
+      selectedImage.type !== "image/jpeg" &&
+      selectedImage.type !== "image/png"
+    ) {
+      const errorMessageModal = document.getElementById("error-message-modal");
+      errorMessageModal.innerText =
+        "Veuillez sélectionner une image au format JPEG ou PNG.";
+      errorMessageModal.style.display = "block";
+      console.log("Test NON réussi pour le format d'image");
+      return;
+    }
+
+    if (selectedImage.size > 4 * 1024 * 1024) {
+      const errorMessageModal = document.getElementById("error-message-modal");
+      errorMessageModal.innerText =
+        "La taille de l'image ne doit pas dépasser 4 Mo.";
+      errorMessageModal.style.display = "block";
+      console.log("Test NON réussi pour la taille de l'image");
+      return;
+    }
 
     // Construire l'objet FormData
     const formData = new FormData();
