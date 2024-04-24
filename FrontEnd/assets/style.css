@@ -196,6 +196,7 @@ nav ul {
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 li:hover {
@@ -464,6 +465,25 @@ input[type="submit"]:hover {
 }
 
 #success-message-modal {
+  display: none;
+  color: rgb(17, 124, 11);
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation-direction: alternate;
+}
+
+/*******************************Message d'erreur deleted projets********************************************/
+#delete-error-message-modal {
+  display: none;
+  color: red;
+  margin-top: 10px;
+  font-size: 25px;
+  text-align: center;
+  animation: shake-animation 0.5s ease;
+}
+
+#delete-success-message-modal {
   display: none;
   color: rgb(17, 124, 11);
   margin-top: 10px;

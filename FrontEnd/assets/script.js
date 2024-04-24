@@ -104,7 +104,7 @@ function renderFilters() {
 }
 // Fonction pour afficher et filtrer, les projets dans le HTML .
 function renderProjects(filter = "Tous") {
-  const sectionGallery = document.querySelector(".gallery");
+  const sectionGallery = document.getElementById("mainGallery");
   // Effacement du contenu précédent de la galerie
   sectionGallery.innerHTML = "";
 
@@ -125,7 +125,7 @@ function renderProjects(filter = "Tous") {
   // Utilisation de innerHTML pour injecter le HTML pour chaque projet filtré
   filteredWorks.forEach((project) => {
     sectionGallery.innerHTML += `
-            <figure>
+            <figure id="main_${project.id}">
                 <img src="${project.imageUrl ?? "(Pas d'image)"}" alt="${
       project.title ?? "(pas de alt)"
     }">
@@ -158,6 +158,7 @@ function openModal() {
 // Fonction pour créer une vignette de projet
 function createProjectThumbnail(project) {
   const projectThumbnail = document.createElement("div");
+  projectThumbnail.id="thum_"+project.id;
   projectThumbnail.classList.add("project-thumbnail");
   // Créer l'image
   const image = document.createElement("img");
@@ -187,13 +188,8 @@ function deleteProject(projectId) {
   );
   // Vérifier si l'utilisateur a confirmé la suppression
   if (confirmation) {
-    // Supprimer le projet de la modal
-    const projectThumbnail = document.querySelector(
-      `.project-thumbnail[data-project-id="${projectId}"]`
-    );
-    if (projectThumbnail) {
-      projectThumbnail.remove();
-    }
+   
+  
     // Requête fetch pour supprimer le projet
     fetch(`http://localhost:5678/api/works/${projectId}`, {
       method: "DELETE",
@@ -201,17 +197,45 @@ function deleteProject(projectId) {
     })
       .then((response) => {
         if (response.ok) {
+          const fig = document.getElementById("main_" + projectId);
+    
+    if (fig) {
+      fig.remove();
+      // Rafraîchir la galerie
+      refreshGallery();
+    }
+     // Supprimer le projet de la modal
+     const projectThumbnail = document.getElementById("thum_" + projectId);
+    
+     if (projectThumbnail) {
+       projectThumbnail.remove();
+     }
           console.log("Le projet a été supprimé avec succès.");
-          // Rafraîchir la galerie
-          refreshGallery();
+          // Afficher un message de succès dans le modal de suppression
+          const successMessageModal = document.getElementById(
+            "delete-success-message-modal"
+          );
+          successMessageModal.style.display = "block";
+          successMessageModal.innerText =
+            "Le projet a été supprimé avec succès.";
         } else {
           console.error(
             "La suppression du projet a échoué. Réponse incorrecte de l'API"
           );
+          // Afficher un message d'erreur dans le modal de suppression
+          const errorMessageModal = document.getElementById(
+            "delete-error-message-modal"
+          );
+          errorMessageModal.style.display = "block";
+          errorMessageModal.innerText =
+            "Une erreur est survenue lors de la suppression du projet.";
         }
       })
       .catch((error) => {
         console.error("Erreur lors de la suppression du projet :", error);
+        window.alert(
+          "Une erreur est survenue lors de la suppression du projet."
+        );
       });
   }
 }
@@ -416,11 +440,12 @@ function sendFormData() {
       })
       .then((data) => {
         console.log("Réponse de l'API :", data);
+          // Rafraîchir la galerie
+          refreshGallery();
         document.getElementById("success-message-modal").style.display =
           "block";
         document.getElementById("error-message-modal").style.display = "none";
-        // Rafraîchir la galerie
-        refreshGallery();
+      
       })
       .catch((error) => {
         // Gérer les erreurs d'envoi du formulaire
@@ -442,7 +467,9 @@ function sendFormData() {
 
 // Fonction pour rafraîchir la galerie après l'envoi du formulaire.
 function refreshGallery() {
+  fetchWorks();
   renderProjects();
+
   console.log("Galerie rafraîchie avec succès !");
 }
 
