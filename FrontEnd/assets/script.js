@@ -279,6 +279,11 @@ function closeModal() {
    // Masquer les messages d'erreur et de succès
    document.getElementById("error-message-modal").style.display = "none";
    document.getElementById("success-message-modal").style.display = "none";
+     // Réinitialiser l'affichage des messages de succès et d'erreur
+  const successMessageModal = document.getElementById("delete-success-message-modal");
+  const errorMessageModal = document.getElementById("delete-error-message-modal");
+  successMessageModal.style.display = "none";
+  errorMessageModal.style.display = "none";
 
   if (selectedImage) {    
     // Appeler la fonction pour injecter le formulaire au besoin
