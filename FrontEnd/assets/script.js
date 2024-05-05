@@ -6,6 +6,7 @@ let projectId;
 // Déclaration d'une variable globale pour stocker l'image sélectionnée
 let selectedImage;
 
+
 // Appel de la fonction d'initialisation de l'application.
 initializeApp();
 
@@ -148,6 +149,7 @@ function openModal() {
   // Sélectionnée la modal et son contenu
   const modalContent = document.querySelector(".modal-content");
   modalContent.innerHTML = "";
+  
   // Pour chaque projet, créer une vignette et l'ajouter à la modal
   works.forEach((project) => {
     const projectThumbnail = createProjectThumbnail(project);
@@ -240,12 +242,58 @@ function deleteProject(projectId) {
   }
 }
 
+function injectImageForm() {
+  const formDiv = document.querySelector(".SectionPreviewImage");
+  // Supprimer le contenu précédent
+  formDiv.innerHTML = "";
+
+  // Réinjecter les éléments
+  const illustrationDiv = document.createElement("div");
+  illustrationDiv.classList.add("illustration");
+  illustrationDiv.innerHTML = `<img id="illustration" src="FrontEnd/assets/icons/Vector.svg" alt="Illustration">`;
+
+  const fileUploadContainer = document.createElement("div");
+  fileUploadContainer.classList.add("file-upload");
+  fileUploadContainer.innerHTML = `
+    <label for="photo" class="file-label">+ Ajouter photo</label>
+    <input type="file" name="photo" id="photo" accept="image/*">
+  `;
+
+  const uploadInfoParagraph = document.createElement("p");
+  uploadInfoParagraph.classList.add("upload-info");
+  uploadInfoParagraph.textContent = "jpg, png : 4mo max";
+
+  // Ajouter les éléments au formulaire
+  formDiv.appendChild(illustrationDiv);
+  formDiv.appendChild(fileUploadContainer);
+  formDiv.appendChild(uploadInfoParagraph);
+}
+// Appeler la fonction pour injecter le formulaire au besoin
+injectImageForm();
 // Fonction pour fermer le modal et mettre à jour la page Projects
 function closeModal() {
   const modal = document.getElementById("myModal");
   const modalSecondary = document.getElementById("myModalSecondary");
   modal.style.display = "none";
   modalSecondary.style.display = "none";
+   // Masquer les messages d'erreur et de succès
+   document.getElementById("error-message-modal").style.display = "none";
+   document.getElementById("success-message-modal").style.display = "none";
+
+  if (selectedImage) {    
+    // Appeler la fonction pour injecter le formulaire au besoin
+    injectImageForm();
+    listenToFileInput() ;
+     // Réinitialiser la variable selectedImage
+     selectedImage = null;
+    console.log("Preview effacer");
+  } else {
+    console.log("Aucune image sélectionnée à afficher");
+  }
+  
+  // Réinitialiser le titre du projet en vidant le champ de saisie
+  document.getElementById("title").value = "";
+  
   // Rafraîchir la galerie
   refreshGallery();
 }
@@ -284,7 +332,7 @@ function setupModalEvents() {
   });
 }
 
-// Appel de la fonction pour configurer les événements du modal Appeler ici pour etre sur que le DOM soit chargé.
+// Appel de la fonction pour configurer les événements de la modal Appeler ici pour etre sur que le DOM soit chargé.
 setupModalEvents();
 
 //Troisième Partie du Programme "envoie des works a l'API"//Troisième Partie du Programme "envoie des works a l'API"
@@ -314,6 +362,7 @@ function fetchAndDisplayCategories() {
       console.error("Erreur lors de la récupération des catégories :", error);
     });
 }
+
 // Fonction pour afficher la miniature de l'image sélectionnée
 function displayImageThumbnail(file) {
   const formDiv = document.querySelector(".SectionPreviewImage");
@@ -445,6 +494,7 @@ function sendFormData() {
         document.getElementById("success-message-modal").style.display =
           "block";
         document.getElementById("error-message-modal").style.display = "none";
+       
       
       })
       .catch((error) => {
@@ -469,6 +519,7 @@ function sendFormData() {
 function refreshGallery() {
   fetchWorks();
   renderProjects();
+  
 
   console.log("Galerie rafraîchie avec succès !");
 }
