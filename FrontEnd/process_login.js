@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
+
       console.log("email et mots de passe :", username, password);
 
       // Vérifier si l'entrée est un email (contient au moins un '@')
       if (!username.includes("@")) {
-        document.getElementById("error-message").innerText =
-          "Veuillez entrer une adresse email valide.";
+        document.getElementById("error-message").innerText ="Veuillez entrer une adresse email valide.";
         return; // Arrêter l'exécution de la fonction si ce n'est pas un email
       }
 
@@ -28,10 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
           password: password,
         }),
       })
+
         .then((response) => {
           console.log("Réponse de l'API:", response);
           return response.json();
         })
+
         .then((data) => {
           console.log("Données de l'API:", data);
           if (data.token) {
@@ -39,22 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Sauvegarde du token dans le stockage local (localStorage)
             localStorage.setItem("token", token);
-            document.getElementById("success-message").innerText =
-              "Félicitations 👌 Vous êtes connecté avec succès";
+           
+            document.getElementById("success-message").innerText ="Félicitations 👌 Vous êtes connecté avec succès";
             window.location.href = "index.html";
+
           } else {
-            document.getElementById("error-message").innerText =
-              "Erreur dans l’identifiant ou le mot de passe";
+            document.getElementById("error-message").innerText ="Erreur dans l’identifiant ou le mot de passe";
             var errorMessageElement = document.getElementById("error-message");
           }
         })
 
         .catch((error) => {
           console.error("Erreur lors de la requête:", error);
-          document.getElementById("error-message").innerText =
-            "Une erreur s'est produite. Veuillez réessayer.";
+          document.getElementById("error-message").innerText ="Une erreur s'est produite. Veuillez réessayer.";
         });
     });
+
   } else {
     // Si le formulaire de connexion n'existe pas (sur la page d'index), ajouter le code spécifique à la page d'index
 
@@ -76,9 +78,30 @@ document.addEventListener("DOMContentLoaded", function () {
       if (token) {
         // Effacer le token du stockage local
         localStorage.removeItem("token");
-        console.log("L'utilisateur s'est déconnecté.");
+        if (!token) {
+          console.log("Le token a été supprimé avec succès.");
+          loginButton.textContent = "Login";
+
+          // Supprimer les éléments d'édition si présents
+          const SectionBar = document.getElementById("editModeBar");
+          const EditPen = document.getElementById("EditPen");
+          if (SectionBar) {
+            SectionBar.remove();
+          }
+          if (EditPen) {
+            EditPen.remove();
+          }
+
+        } else {
+          console.log("Le token n'a pas été supprimé. Mais on va rafraîchir la page quand même.");
+          window.location.reload();
+        }
+        
         // Mettre à jour le texte du bouton
         loginButton.textContent = "Login";
+        console.log("L'utilisateur s'est déconnecté.");
+        
+
       } else {
         // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
         console.log("Redirection vers la page de connexion.");
@@ -90,8 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // Si le token est présent, l'utilisateur est connecté
       console.log("Token trouvé :", token);
       console.log("L'utilisateur est connecté.");
+
       loginButton.textContent = "Logout";
       title.textContent = `Bienvenue`; // Remplacez "User" par le nom d'utilisateur si vous le souhaitez
+      
       console.log("verifcation injection Users :", title);
       // Créer le contenu HTML de la barre de mode édition
       const editModeBarHTML = `<!-- Barre noire en haut de la page -->
@@ -101,9 +126,17 @@ document.addEventListener("DOMContentLoaded", function () {
       // Sélectionner l'élément parent où vous souhaitez insérer le contenu HTML
       const portfolioSection = document.getElementById("SectionModif");
       // Créer le contenu HTML de l'élément "modifier" et du titre
-      const modifyHTML = `<a href="#" onclick="openModal()">✏️Modifier</a>`;
+      const modifyHTML = `<a href="#" onclick="openModal()"id="EditPen">✏️Modifier</a>`;
       // Insérer le contenu HTML juste avant la fin de l'élément parent
       portfolioSection.insertAdjacentHTML("afterbegin", modifyHTML);
+
+      let FilterDelete = document.getElementById("FilterDelete");
+      if (FilterDelete) {
+        FilterDelete.remove();
+      }
+      console.log("verifcation de la variable FilterDelete :", FilterDelete);
+
+      
     } else {
       // Si le token n'est pas présent, l'utilisateur n'est pas connecté
       console.log("L'utilisateur n'est pas connecté.");

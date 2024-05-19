@@ -19,6 +19,9 @@ async function initializeApp() {
   try {
     // Récupération du token depuis le localStorage
     token = localStorage.getItem("token");
+    //Une fois que la récupération des catégories est terminée avec succès, 
+    //la fonction attend que la promesse renvoyée par la fonction fetchWorks() soit résolue.
+
     // Récupération des catégories depuis l'API.
     await fetchCategories();
     // Récupération des projets depuis l'API.
@@ -27,6 +30,7 @@ async function initializeApp() {
     // Affichage des projets et des boutons de filtre HTML.
     renderProjects();
     renderFilters();
+
   } catch (error) {
     console.error(
       "Une erreur est survenue lors de l'initialisation de l'application :",
@@ -35,6 +39,7 @@ async function initializeApp() {
     // Gestion de l'erreur selon la logique de l'application
   }
 }
+
 // Fonction pour récupérer les projets depuis l'API.
 async function fetchWorks() {
   try {
@@ -42,8 +47,10 @@ async function fetchWorks() {
     if (!response.ok) {
       throw new Error("La requête fetch pour les projets a échoué");
     }
+
     works = await response.json();
     console.log("Résultat de WORKS :", works);
+
   } catch (error) {
     console.error(
       "Une erreur est survenue lors de la récupération des projets :",
@@ -52,6 +59,7 @@ async function fetchWorks() {
     // Gestion de l'erreur selon la logique de l'application
   }
 }
+
 // Fonction pour récupérer les catégories depuis l'API.
 async function fetchCategories() {
   try {
@@ -61,6 +69,7 @@ async function fetchCategories() {
     }
     categories = await response.json();
     console.log("Résultat de CATEGORIES :", categories);
+
   } catch (error) {
     console.error(
       "Une erreur est survenue lors de la récupération des catégories :",
@@ -69,10 +78,11 @@ async function fetchCategories() {
     // Gestion de l'erreur selon la logique de l'application
   }
 }
+
 // Fonction pour afficher et ecouter, les boutons de filtre HTML.
 function renderFilters() {
   const filtersHTML = `
-        <div class="filters">
+        <div id="FilterDelete" class="filters">
             <button class="btn-filter">Tous</button>
             <button class="btn-filter">Objets</button>
             <button class="btn-filter">Appartements</button>
@@ -93,6 +103,7 @@ function renderFilters() {
       if (filter) {
         renderProjects(filter);
         console.log("Filtre appliqué :", filter);
+
       } else {
         console.error("Texte du bouton de filtre non défini");
       }
@@ -103,16 +114,20 @@ function renderFilters() {
     document.querySelectorAll(".btn-filter")
   );
 }
+
 // Fonction pour afficher et filtrer, les projets dans le HTML .
 function renderProjects(filter = "Tous") {
+
   const sectionGallery = document.getElementById("mainGallery");
   // Effacement du contenu précédent de la galerie
   sectionGallery.innerHTML = "";
 
   // Filtrer les projets en fonction de la catégorie sélectionnée
   const filteredWorks = works.filter((project) => {
+
     if (filter === "Tous") {
       return true; // Afficher tous les projets
+
     } else {
       // Rechercher la catégorie correspondant à l'identifiant de catégorie dans le projet
       const category = categories.find(
@@ -127,9 +142,8 @@ function renderProjects(filter = "Tous") {
   filteredWorks.forEach((project) => {
     sectionGallery.innerHTML += `
             <figure id="main_${project.id}">
-                <img src="${project.imageUrl ?? "(Pas d'image)"}" alt="${
-      project.title ?? "(pas de alt)"
-    }">
+                <img src="${project.imageUrl ?? "(Pas d'image)"}" 
+                alt="${project.title ?? "(pas de alt)" }">
                 <figcaption>${project.title ?? "(pas de title)"}</figcaption>
             </figure>
         `;
@@ -214,30 +228,23 @@ function deleteProject(projectId) {
      }
           console.log("Le projet a été supprimé avec succès.");
           // Afficher un message de succès dans le modal de suppression
-          const successMessageModal = document.getElementById(
-            "delete-success-message-modal"
-          );
+          const successMessageModal = document.getElementById("delete-success-message-modal");
           successMessageModal.style.display = "block";
-          successMessageModal.innerText =
-            "Le projet a été supprimé avec succès.";
+          successMessageModal.innerText ="Le projet a été supprimé avec succès.";
+
         } else {
           console.error(
             "La suppression du projet a échoué. Réponse incorrecte de l'API"
           );
           // Afficher un message d'erreur dans le modal de suppression
-          const errorMessageModal = document.getElementById(
-            "delete-error-message-modal"
-          );
+          const errorMessageModal = document.getElementById("delete-error-message-modal");
           errorMessageModal.style.display = "block";
-          errorMessageModal.innerText =
-            "Une erreur est survenue lors de la suppression du projet.";
+          errorMessageModal.innerText ="Une erreur est survenue lors de la suppression du projet.";
         }
       })
       .catch((error) => {
         console.error("Erreur lors de la suppression du projet :", error);
-        window.alert(
-          "Une erreur est survenue lors de la suppression du projet."
-        );
+        window.alert("Une erreur est survenue lors de la suppression du projet.");
       });
   }
 }
@@ -270,6 +277,7 @@ function injectImageForm() {
 }
 // Appeler la fonction pour injecter le formulaire au besoin
 injectImageForm();
+
 // Fonction pour fermer le modal et mettre à jour la page Projects
 function closeModal() {
   const modal = document.getElementById("myModal");
@@ -346,6 +354,7 @@ setupModalEvents();
 
 // Fonction pour récupérer les catégories depuis l'API et les afficher dans le menu déroulant.
 function fetchAndDisplayCategories() {
+
   fetch("http://localhost:5678/api/categories")
     .then((response) => {
       if (!response.ok) {
@@ -373,6 +382,8 @@ function displayImageThumbnail(file) {
   const formDiv = document.querySelector(".SectionPreviewImage");
   if (file) {
     const reader = new FileReader();
+    //reader.onload est un événement déclenché lorsque le processus de lecture du fichier est terminé avec succès
+    // Il est défini comme une fonction qui prend un argument e représentant l'événement.
     reader.onload = function (e) {
       const img = document.createElement("img");
       img.src = e.target.result;
@@ -411,6 +422,7 @@ function listenToFileInput() {
 // Fonction pour envoyer les données du formulaire au serveur via une Fetch vers l'API.
 function sendFormData() {
   const form = document.getElementById("ProjetForm");
+  const sendButton = document.getElementById("sendButton");
   //gestion du submitform
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -434,8 +446,7 @@ function sendFormData() {
     // Vérification si une image est sélectionnée
     if (!selectedImage) {
       const errorMessageModal = document.getElementById("error-message-modal");
-      errorMessageModal.innerText =
-        "Veuillez sélectionner une image pour le projet.";
+      errorMessageModal.innerText ="Veuillez sélectionner une image pour le projet.";
       errorMessageModal.style.display = "block";
       console.log("Test NON réussi pour la sélection d'image");
       return;
@@ -443,12 +454,11 @@ function sendFormData() {
 
     // Vérification si l'image est au format JPEG ou PNG et ne dépasse pas 4 Mo
     if (
-      selectedImage.type !== "image/jpeg" &&
-      selectedImage.type !== "image/png"
-    ) {
+      selectedImage.type !== "image/jpeg" && selectedImage.type !== "image/png") 
+      
+      {
       const errorMessageModal = document.getElementById("error-message-modal");
-      errorMessageModal.innerText =
-        "Veuillez sélectionner une image au format JPEG ou PNG.";
+      errorMessageModal.innerText ="Veuillez sélectionner une image au format JPEG ou PNG.";
       errorMessageModal.style.display = "block";
       console.log("Test NON réussi pour le format d'image");
       return;
@@ -456,15 +466,16 @@ function sendFormData() {
 
     if (selectedImage.size > 4 * 1024 * 1024) {
       const errorMessageModal = document.getElementById("error-message-modal");
-      errorMessageModal.innerText =
-        "La taille de l'image ne doit pas dépasser 4 Mo.";
+      errorMessageModal.innerText ="La taille de l'image ne doit pas dépasser 4 Mo.";
       errorMessageModal.style.display = "block";
       console.log("Test NON réussi pour la taille de l'image");
       return;
     }
+      
 
     // Construire l'objet FormData
     const formData = new FormData();
+
     formData.append("image", selectedImage);
     formData.append("title", titleInput);
     formData.append("category", parseInt(categoryInput)); // Convertir en entier pour respecter le format attendu par L'API.
@@ -479,6 +490,7 @@ function sendFormData() {
       Authorization: `Bearer ${token}`,
       // "Content-Type": "application/json",
     };
+
     // Envoyer les données au serveur
     fetch("http://localhost:5678/api/works", {
       method: "POST",
@@ -487,31 +499,31 @@ function sendFormData() {
     })
       .then((response) => {
         console.log("verification de la réponse de l'API =", response);
+
         if (!response.ok) {
           throw new Error("Erreur lors de l'envoi du formulaire");
         }
         return response.json();
       })
+
       .then((data) => {
         console.log("Réponse de l'API :", data);
           // Rafraîchir la galerie
           refreshGallery();
-        document.getElementById("success-message-modal").style.display =
-          "block";
+        document.getElementById("success-message-modal").style.display ="block";
         document.getElementById("error-message-modal").style.display = "none";
        
-      
       })
+
       .catch((error) => {
         // Gérer les erreurs d'envoi du formulaire
         console.error("Erreur lors de l'envoi du formulaire :", error);
         document.getElementById("error-message-modal").style.display = "block";
         document.getElementById("success-message-modal").style.display = "none";
+
         // Effacer le message d'erreur modal après quelques secondes
         setTimeout(() => {
-          const errorMessageModal = document.getElementById(
-            "error-message-modal"
-          );
+          const errorMessageModal = document.getElementById("error-message-modal");
           if (errorMessageModal) {
             errorMessageModal.style.display = "none";
           }
@@ -525,7 +537,6 @@ function refreshGallery() {
   fetchWorks();
   renderProjects();
   
-
   console.log("Galerie rafraîchie avec succès !");
 }
 

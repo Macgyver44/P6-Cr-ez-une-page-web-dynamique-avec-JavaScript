@@ -773,13 +773,19 @@ h3 {
   cursor: pointer;
 }
 
-#sendButton:hover {
-  background-color: #1d6154;
-  transform: scale(1.1);
-  /* Mise à l'échelle de 120% lors du survol */
-  transition: transform 0.3s ease;
-  /* Animation fluide */
+#sendButton {
+  transition: background-color 0.3s ease; /* Animation fluide de transition */
 }
+
+#sendButton:hover {
+  /* background-color: #1d6154; Couleur verte lorsqu'il est survolé */
+  transform: scale(1.1); /* Mise à l'échelle de 110% lors du survol */
+}
+
+.green-on-hover {
+  background-color: #1d6154 !important; /* Force la couleur verte */
+}
+
 
 /* Réinitialiser les styles par défaut des liens */
 a {
